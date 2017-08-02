@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "BackViewController.h"
+#import "SearchViewController.h"
 
 @interface ViewController ()
 
@@ -16,14 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.title = @"返回按钮";
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)pushToBack:(id)sender {
+    BackViewController *backVC = [[BackViewController alloc] init];
+    [self.navigationController pushViewController:backVC animated:YES];
 }
 
+- (IBAction)searchBar:(id)sender {
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
 
 @end
