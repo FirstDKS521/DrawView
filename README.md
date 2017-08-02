@@ -2,6 +2,22 @@
 
 ![效果GIF.gif](http://upload-images.jianshu.io/upload_images/1840399-348bfa8a6a05d3b6.gif?imageMogr2/auto-orient/strip)
 
+####UISearchBar的使用，在导航栏上添加搜索框：
+
+```
+UISearchBar *searchBar = [[UISearchBar alloc] init];
+searchBar.placeholder = @"搜索";
+searchBar.showsCancelButton = YES; //显示关闭按钮
+//这个主要是为了把cancel按钮改变成中文的，如果在plist文件中设置过，则不需要此处
+UIButton *cancelBtn = [searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
+//这样就可以随便设置这个按钮了
+[cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+searchBar.searchBarStyle = UISearchBarStyleMinimal; //去掉searchBar的周边颜色
+searchBar.frame = CGRectMake(0, 7, [UIScreen mainScreen].bounds.size.width, 30);
+searchBar.delegate = self;
+self.navigationItem.titleView = searchBar;
+```
+####改变返回按钮的颜色
 项目中使用到了web页面，由于web页面可能背景色不同，想要使导航栏的背景色和web的背景色一致，此时返回按钮的文案颜色以及‘返回箭头’颜色可能也需要改变；
 
 `返回箭头`和`返回`我是自定义了一个View，然后把自定义的View转换成图片作为按钮的背景图，而按钮又作为返回按钮`leftBarButtonItem`，返回箭头我是通过UIBezierPath画出来的；下面是返回箭头的绘制：
